@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="SQLApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:SQLApp.View"
+    Title="SQLApp"
+    FlyoutBehavior="Flyout">
+
+    <ShellContent
+        Title="Menu Principal"
+        ContentTemplate="{DataTemplate local:MenuPage}"
+        Route="MenuPage" />
+
+    <ShellContent
+        Title="Cadastro de Clientes"
+        ContentTemplate="{DataTemplate local:ClientePage}"
+        Route="ClientePage" />
+
+    <ShellContent
+        Title="Cadastro de Produtos"
+        ContentTemplate="{DataTemplate local:ProdutoPage}"
+        Route="ProdutoPage" />
+
+    <ShellContent
+        Title="Compras"
+        ContentTemplate="{DataTemplate local:CompraPage}"
+        Route="CompraPage" />
+
+    <ShellContent
+        Title="Itens da Compra"
+        ContentTemplate="{DataTemplate local:ItemCompraPage}"
+        Route="ItemCompraPage" />
+
+</Shell>

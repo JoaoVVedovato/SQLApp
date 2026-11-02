@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SQLApp.View.ItemCompraPage"
+             Title="Itens da Compra">
+    <ScrollView>
+        <VerticalStackLayout Padding="10" Spacing="10">
+            <Label Text="Compra:"/>
+            <Picker x:Name="pkCompra" Title="Selecione a compra"
+                    ItemDisplayBinding="{Binding Descricao}"/>
+            <Label Text="Produto:"/>
+            <Picker x:Name="pkProduto" Title="Selecione o produto"
+                    ItemDisplayBinding="{Binding NomeProduto}"/>
+            <Label Text="Quantidade:"/>
+            <Entry x:Name="txQuantidade" Keyboard="Numeric"/>
+
+            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                <Button Text="Incluir" Clicked="btIncluir_Clicked"/>
+                <Button Text="Alterar" Clicked="btAlterar_Clicked"/>
+                <Button Text="Excluir" Clicked="btExcluir_Clicked"/>
+                <Button Text="Limpar" Clicked="btLimpar_Clicked"/>
+            </HorizontalStackLayout>
+
+            <CollectionView x:Name="lvLista" SelectionMode="Single"
+                            SelectionChanged="lvLista_SelectionChanged">
+                <CollectionView.Header>
+                    <Grid ColumnDefinitions="60,90,90,60,120" BackgroundColor="DarkGray">
+                        <Label Grid.Column="0" Text="CÓD" FontAttributes="Bold"/>
+                        <Label Grid.Column="1" Text="COMPRA" FontAttributes="Bold"/>
+                        <Label Grid.Column="2" Text="PRODUTO" FontAttributes="Bold"/>
+                        <Label Grid.Column="3" Text="QTD" FontAttributes="Bold"/>
+                        <Label Grid.Column="4" Text="PARCIAL" FontAttributes="Bold"/>
+                    </Grid>
+                </CollectionView.Header>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="60,90,90,60,120" Padding="0,5">
+                            <Label Grid.Column="0" Text="{Binding CodigoItem}"/>
+                            <Label Grid.Column="1" Text="{Binding CodigoCompra}"/>
+                            <Label Grid.Column="2" Text="{Binding CodigoProduto}"/>
+                            <Label Grid.Column="3" Text="{Binding Quantidade}"/>
+                            <Label Grid.Column="4" Text="{Binding ValorParcial, StringFormat='{0:C}'}"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

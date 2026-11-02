@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SQLApp.View.CompraPage"
+             Title="Compras">
+    <ScrollView>
+        <VerticalStackLayout Padding="10" Spacing="10">
+            <Label Text="Cliente:"/>
+            <Picker x:Name="pkCliente" Title="Selecione o cliente"
+                    ItemDisplayBinding="{Binding Nome}"/>
+            <Label Text="Data da Compra:"/>
+            <DatePicker x:Name="dpData" Format="dd/MM/yyyy" HorizontalOptions="Start"/>
+            <Label Text="Valor Total (calculado pelos itens):"/>
+            <Entry x:Name="txValorTotal" IsReadOnly="True"/>
+
+            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                <Button Text="Incluir" Clicked="btIncluir_Clicked"/>
+                <Button Text="Alterar" Clicked="btAlterar_Clicked"/>
+                <Button Text="Excluir" Clicked="btExcluir_Clicked"/>
+                <Button Text="Limpar" Clicked="btLimpar_Clicked"/>
+            </HorizontalStackLayout>
+
+            <CollectionView x:Name="lvLista" SelectionMode="Single"
+                            SelectionChanged="lvLista_SelectionChanged">
+                <CollectionView.Header>
+                    <Grid ColumnDefinitions="60,110,100,120" BackgroundColor="DarkGray">
+                        <Label Grid.Column="0" Text="CÓD" FontAttributes="Bold"/>
+                        <Label Grid.Column="1" Text="DATA" FontAttributes="Bold"/>
+                        <Label Grid.Column="2" Text="CLIENTE" FontAttributes="Bold"/>
+                        <Label Grid.Column="3" Text="TOTAL" FontAttributes="Bold"/>
+                    </Grid>
+                </CollectionView.Header>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="60,110,100,120" Padding="0,5">
+                            <Label Grid.Column="0" Text="{Binding CodigoCompra}"/>
+                            <Label Grid.Column="1" Text="{Binding DataCompra, StringFormat='{0:dd/MM/yyyy}'}"/>
+                            <Label Grid.Column="2" Text="{Binding CodigoCliente}"/>
+                            <Label Grid.Column="3" Text="{Binding ValorTotal, StringFormat='{0:C}'}"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SQLApp.View.ClientePage"
+             Title="Cadastro de Clientes">
+    <ScrollView>
+        <VerticalStackLayout Padding="10" Spacing="10">
+            <Label Text="Nome:"/>
+            <Entry x:Name="txNome" MaxLength="50"/>
+            <Label Text="RG:"/>
+            <Entry x:Name="txRG" Keyboard="Numeric" MaxLength="10"/>
+            <Label Text="Telefone:"/>
+            <Entry x:Name="txTelefone" Keyboard="Telephone" MaxLength="14"/>
+
+            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                <Button Text="Incluir" Clicked="btIncluir_Clicked"/>
+                <Button Text="Alterar" Clicked="btAlterar_Clicked"/>
+                <Button Text="Excluir" Clicked="btExcluir_Clicked"/>
+                <Button Text="Limpar" Clicked="btLimpar_Clicked"/>
+            </HorizontalStackLayout>
+
+            <CollectionView x:Name="lvLista" SelectionMode="Single"
+                            SelectionChanged="lvLista_SelectionChanged">
+                <CollectionView.Header>
+                    <Grid ColumnDefinitions="60,180,120,140" BackgroundColor="DarkGray">
+                        <Label Grid.Column="0" Text="CÓD" FontAttributes="Bold"/>
+                        <Label Grid.Column="1" Text="NOME" FontAttributes="Bold"/>
+                        <Label Grid.Column="2" Text="RG" FontAttributes="Bold"/>
+                        <Label Grid.Column="3" Text="TELEFONE" FontAttributes="Bold"/>
+                    </Grid>
+                </CollectionView.Header>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="60,180,120,140" Padding="0,5">
+                            <Label Grid.Column="0" Text="{Binding CodigoCliente}"/>
+                            <Label Grid.Column="1" Text="{Binding Nome}"/>
+                            <Label Grid.Column="2" Text="{Binding RG}"/>
+                            <Label Grid.Column="3" Text="{Binding Telefone}"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

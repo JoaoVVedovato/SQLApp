@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SQLApp.View.ProdutoPage"
+             Title="Cadastro de Produtos">
+    <ScrollView>
+        <VerticalStackLayout Padding="10" Spacing="10">
+            <Label Text="Nome do Produto:"/>
+            <Entry x:Name="txNome" MaxLength="50"/>
+            <Label Text="Tipo:"/>
+            <Entry x:Name="txTipo" MaxLength="50"/>
+            <Label Text="Preço:"/>
+            <Entry x:Name="txPreco" Keyboard="Numeric" Placeholder="Ex.: 10,50"/>
+            <Label Text="Quantidade em Estoque:"/>
+            <Entry x:Name="txEstoque" Keyboard="Numeric"/>
+
+            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                <Button Text="Incluir" Clicked="btIncluir_Clicked"/>
+                <Button Text="Alterar" Clicked="btAlterar_Clicked"/>
+                <Button Text="Excluir" Clicked="btExcluir_Clicked"/>
+                <Button Text="Limpar" Clicked="btLimpar_Clicked"/>
+            </HorizontalStackLayout>
+
+            <CollectionView x:Name="lvLista" SelectionMode="Single"
+                            SelectionChanged="lvLista_SelectionChanged">
+                <CollectionView.Header>
+                    <Grid ColumnDefinitions="60,180,130,100,80" BackgroundColor="DarkGray">
+                        <Label Grid.Column="0" Text="CÓD" FontAttributes="Bold"/>
+                        <Label Grid.Column="1" Text="NOME" FontAttributes="Bold"/>
+                        <Label Grid.Column="2" Text="TIPO" FontAttributes="Bold"/>
+                        <Label Grid.Column="3" Text="PREÇO" FontAttributes="Bold"/>
+                        <Label Grid.Column="4" Text="ESTOQUE" FontAttributes="Bold"/>
+                    </Grid>
+                </CollectionView.Header>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="60,180,130,100,80" Padding="0,5">
+                            <Label Grid.Column="0" Text="{Binding CodigoProduto}"/>
+                            <Label Grid.Column="1" Text="{Binding NomeProduto}"/>
+                            <Label Grid.Column="2" Text="{Binding Tipo}"/>
+                            <Label Grid.Column="3" Text="{Binding Preco, StringFormat='{0:C}'}"/>
+                            <Label Grid.Column="4" Text="{Binding QtdEstoque}"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
